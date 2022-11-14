@@ -38,6 +38,5 @@ public class CountDistinctElements{
         int[] nums={1,2,2,1,3,1,1,3};
         int k=4;
         countDistinctElements(nums, k);
-        Heap
     }
 }
