@@ -1,38 +1,32 @@
 package Heaputils;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Heap {
-    static ArrayList<Integer> heap;// The heap
+    ArrayList<Integer> heap;// The heap
+    int size;
 
-    public Heap(ArrayList<Integer> input) {// constructor for heaps
-        heapify(input);
+    public Heap(ArrayList<Integer> input,int size) {// constructor for heaps
         heap = input;
+        this.size=size;
+        heapify();
     }
 
-    public void heapify(ArrayList<Integer> input) {// heapify method
-        int current = (input.size() - 1) / 2;
-        int currValue;
-        int lc;
-        int rc;
-        int greater;
-        while (current > 0) {
-            lc = current * 2;
-            rc = current * 2 + 1;
-            try {
-                currValue = input.get(current);
-                greater = Math.max(input.get(lc), input.get(rc));
+    public void heapify(){
 
-                if (greater > input.get(current)) {// swapping if one of the child nodes is bigger than parent node.
-                    input.set(current, input.get(greater));
-                    input.set(greater, currValue);
-                }
-            } catch (IndexOutOfBoundsException e) {
-                if (lc >= input.size()) {
+    }
 
-                }
-            }
-        }
+    public void swap(int a,int b){//swaps value two indexes of the heap.
+        int temp=heap.get(a);
+        heap.set(a, heap.get(b));
+        heap.set(b, temp);
+    }
 
+    public int countChildren(int current){//returns number of children a given node has.
+        if((current*2+1)>=size)
+            return 2;
+        else
+            return 1;
     }
 }
