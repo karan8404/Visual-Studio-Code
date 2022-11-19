@@ -30,7 +30,8 @@ class mandelbrot {
             if (x == Math.pow(x, 2) + c)
                 return i;
             x = Math.pow(x, 2) + c;
-            // System.out.println(i+":"+x);//the line that shows steps, uncomment this line to show the number after each step.
+            // System.out.println(i+":"+x);//the line that shows steps, uncomment this line
+            // to show the number after each step.
             if (x > 1 && (Math.pow(x, 2) + c) > x)
                 return -1;
         }

@@ -1,10 +1,11 @@
 package playground.sorts;
+
 import java.util.*;
 
 class BubbleSort {
     public static void main(String args[]) {
         new Input();
-        ArrayList<Integer> a =Input.input();
+        ArrayList<Integer> a = Input.input();
         // bubble sort algorithm
         int n = a.size();
         int current;

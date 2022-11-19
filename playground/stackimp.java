@@ -1,16 +1,16 @@
 package playground;
+
 import java.util.*;
 
-public class stackimp{
+public class stackimp {
 
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        Stack<Integer> st=new Stack<Integer>();
+        Scanner sc = new Scanner(System.in);
+        Stack<Integer> st = new Stack<Integer>();
         System.out.println("Enter push, peek, pop, print or stop.");
-        String c="";
-        label:
-        while(true){
-            c=sc.next();
+        String c = "";
+        label: while (true) {
+            c = sc.next();
             switch (c) {
                 case "push":
                     System.out.println("Enter the number to be pushed into the stack");
@@ -20,7 +20,7 @@ public class stackimp{
                     System.out.println(st.peek());
                     break;
                 case "pop":
-                    System.out.println("popped element "+st.pop());
+                    System.out.println("popped element " + st.pop());
                     break;
                 case "print":
                     System.out.println(st.toString());
@@ -34,6 +34,6 @@ public class stackimp{
             }
         }
         sc.close();
-        
+
     }
 }
