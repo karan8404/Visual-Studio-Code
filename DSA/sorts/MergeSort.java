@@ -1,4 +1,4 @@
-package playground.sorts;
+package sorts;
 
 /* Java program for Merge Sort */
 class MergeSort {

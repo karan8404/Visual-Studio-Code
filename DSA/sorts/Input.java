@@ -1,4 +1,4 @@
-package playground.sorts;
+package sorts;
 
 import java.util.*;
 
