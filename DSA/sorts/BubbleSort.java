@@ -4,8 +4,8 @@ import java.util.*;
 
 class BubbleSort {
     public static void main(String args[]) {
-        Scanner sc=new Scanner(System.in);
-        ArrayList<Integer> a = Input.input(sc);
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Integer> a = Input.inputAlist(sc);
         // bubble sort algorithm
         int n = a.size();
         int current;

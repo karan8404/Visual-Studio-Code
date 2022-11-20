@@ -68,8 +68,8 @@ class QuickSort {
 
 	// Driver program
 	public static void main(String args[]) {
-		Scanner sc=new Scanner(System.in);
-		ArrayList<Integer> arr = Input.input(sc);
+		Scanner sc = new Scanner(System.in);
+		ArrayList<Integer> arr = Input.inputAlist(sc);
 		int n = arr.size();
 		Integer[] a = new Integer[n];
 		a = arr.toArray(a);

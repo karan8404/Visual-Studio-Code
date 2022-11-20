@@ -65,8 +65,8 @@ public class HeapSort {
 
     // Driver's code
     public static void main(String args[]) {
-        Scanner sc=new Scanner(System.in);
-        ArrayList<Integer> a = Input.input(sc);
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Integer> a = Input.inputAlist(sc);
         int[] arr = new int[a.size()];
         for (int i = 0; i < a.size(); i++) {
             arr[i] = a.get(i);
