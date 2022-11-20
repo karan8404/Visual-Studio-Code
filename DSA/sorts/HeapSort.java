@@ -53,10 +53,10 @@ public class HeapSort {
     /* A utility function to print array of size n */
     static String toString(int arr[]) {
         int N = arr.length;
-        StringBuilder res=new StringBuilder();
+        StringBuilder res = new StringBuilder();
 
         for (int i = 0; i < N; ++i)
-            res.append(arr[i]+" ");
+            res.append(arr[i] + " ");
         res.append("\r\n");
 
         return res.toString();
@@ -64,10 +64,10 @@ public class HeapSort {
 
     // Driver's code
     public static void main(String args[]) {
-        ArrayList<Integer> a=Input.input();
-        int[] arr=new int[a.size()];
-        for(int i=0;i<a.size();i++){
-            arr[i]=a.get(i);
+        ArrayList<Integer> a = Input.input();
+        int[] arr = new int[a.size()];
+        for (int i = 0; i < a.size(); i++) {
+            arr[i] = a.get(i);
         }
 
         sort(arr);
