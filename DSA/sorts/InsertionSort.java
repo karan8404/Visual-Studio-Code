@@ -4,7 +4,8 @@ import java.util.*;
 
 class InsertionSort {
     public static void main(String args[]) {
-        ArrayList<Integer> a = Input.input();
+        Scanner sc=new Scanner(System.in);
+        ArrayList<Integer> a = Input.input(sc);
         // Insertion sort algorithm
         int n = a.size();
         int current;

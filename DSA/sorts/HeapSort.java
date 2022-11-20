@@ -1,6 +1,7 @@
 package sorts;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 // Java program for implementation of Heap Sort
 
@@ -64,7 +65,8 @@ public class HeapSort {
 
     // Driver's code
     public static void main(String args[]) {
-        ArrayList<Integer> a = Input.input();
+        Scanner sc=new Scanner(System.in);
+        ArrayList<Integer> a = Input.input(sc);
         int[] arr = new int[a.size()];
         for (int i = 0; i < a.size(); i++) {
             arr[i] = a.get(i);

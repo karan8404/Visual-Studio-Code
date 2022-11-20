@@ -4,7 +4,8 @@ import java.util.*;
 
 class SelectionSort {
     public static void main(String args[]) {
-        ArrayList<Integer> a = Input.input();
+        Scanner sc=new Scanner(System.in);
+        ArrayList<Integer> a = Input.input(sc);
         // Selection sort algorithm
         int n = a.size();
         int min;

@@ -1,6 +1,7 @@
 package sorts;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 // Java program for implementation of QuickSort
 class QuickSort {
@@ -67,8 +68,8 @@ class QuickSort {
 
 	// Driver program
 	public static void main(String args[]) {
-		new Input();
-		ArrayList<Integer> arr = Input.input();
+		Scanner sc=new Scanner(System.in);
+		ArrayList<Integer> arr = Input.input(sc);
 		int n = arr.size();
 		Integer[] a = new Integer[n];
 		a = arr.toArray(a);
