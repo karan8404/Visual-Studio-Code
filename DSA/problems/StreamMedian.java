@@ -4,27 +4,26 @@
 import java.util.*;
 
 class StreamMedian {
-    PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());// maxHeap
-    PriorityQueue<Integer> minHeap = new PriorityQueue<>();// minHeap
+    PriorityQueue<Integer> maxHeap;
+    PriorityQueue<Integer> minHeap;
 
     public double findMedian() {
         if (maxHeap.size() == minHeap.size())// if both have same size, return average of elements.
-            return (maxHeap.peek() + minHeap.peek()) / 2;
+            return (maxHeap.peek() + minHeap.peek()) / 2.0;
         else// max heap has more elements return root element.
             return maxHeap.peek();
     }
 
     public void put(int a) {
-        maxHeap.add(a);
-        if (maxHeap.size() - minHeap.size() >= 2)// if max has 2 more elements than min then put one into min.
+        if (maxHeap.isEmpty() || maxHeap.peek() >= a)
+            maxHeap.add(a);
+        else
+            minHeap.add(a);
+        //moving elements from one heap to another 
+        if(maxHeap.size()-minHeap.size()>=2)//if maxheap has 2 more elements
             minHeap.add(maxHeap.poll());
-        if (maxHeap.size() != 0 && minHeap.size() != 0) {
-            if (maxHeap.peek() > minHeap.peek()) {// if top element in max is greater than top element in min, swap.
-                int temp = maxHeap.poll();
-                maxHeap.add(minHeap.poll());
-                minHeap.add(temp);
-            }
-        }
+        else if(minHeap.size()>maxHeap.size())//if minheap has more elements
+            maxHeap.add(minHeap.poll());
     }
 
     public static void main(String[] args) {
@@ -35,7 +34,7 @@ class StreamMedian {
         while (true) {
             ch = sc.next().charAt(0);
             if (Character.isDigit(ch))// if character is number call put().
-                ob.put(Integer.valueOf(ch));
+                ob.put(Character.getNumericValue(ch));
             else if (ch == 'x') {// if x is enter find the median then exit.
                 System.out.println(ob.findMedian());
                 break;
@@ -43,5 +42,10 @@ class StreamMedian {
                 System.out.println(ob.findMedian());
         }
         sc.close();
+    }
+
+    public StreamMedian() {
+        maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        minHeap = new PriorityQueue<>();
     }
 }
