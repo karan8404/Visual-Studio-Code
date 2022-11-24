@@ -1,3 +1,4 @@
+package recursion;
 public class NQueen {
     static int N;
 

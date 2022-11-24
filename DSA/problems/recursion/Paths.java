@@ -1,3 +1,4 @@
+package recursion;
 class Paths {// find the number of paths to travel through an arrayfrom start to end.
     // VIDEO NUMBER #9
 

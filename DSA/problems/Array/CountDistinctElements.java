@@ -1,3 +1,4 @@
+package Array;
 import java.util.HashMap;
 
 //count distinct elements in a window of size k of an arra.

@@ -1,3 +1,4 @@
+package Array;
 public class StringPalindrome {
     // to find if a string is palindrome
     // video no #10.

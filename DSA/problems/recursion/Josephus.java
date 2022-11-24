@@ -1,3 +1,4 @@
+package recursion;
 public class Josephus {// To solve the josephus problem.
     // video number #9
 
