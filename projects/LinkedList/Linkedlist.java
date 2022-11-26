@@ -1,3 +1,4 @@
+//implementation of a doubly Linked List. Video #36.
 package LinkedList;
 
 public class Linkedlist<T> {
