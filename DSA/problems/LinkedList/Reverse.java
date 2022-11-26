@@ -15,6 +15,18 @@ public class Reverse {
         reverse(ll);
         System.out.println(ll);// print reversed linked list.
         sc.close();
+        //checking for next and prev elements.
+        Linkedlist<Integer>.Node current=ll.head;
+        while(current!=null){
+            System.out.print(current+",");
+            current=current.next;
+        }
+        current=ll.tail;
+        System.out.println();
+        while(current!=null){
+            System.out.print(current+",");
+            current=current.prev;
+        }
     }
 
     public static void addAll(Linkedlist<Integer> ll, int[] arr) {// input for linked list.
@@ -24,19 +36,19 @@ public class Reverse {
     }
 
     public static void reverse(Linkedlist<Integer> ll) {
-        if (ll.size == 0 || ll.size == 1)
+        if (ll.size() == 0 || ll.size() == 1)
             return;
         Linkedlist<Integer>.Node current = ll.head;
-        Linkedlist<Integer>.Node prevNode = null;
         Linkedlist<Integer>.Node nextNode;
         while (current != null) {
-            nextNode = current.next;
-            current.next = prevNode;
-            prevNode = current;
-            current = nextNode;
+            nextNode=current.next;
+            current.next=current.prev;
+            current.prev=nextNode;
+            current=nextNode;
         }
         // swapping tail and head.
-        ll.tail = ll.head;
-        ll.head = prevNode;
+        current=ll.head;
+        ll.head=ll.tail;
+        ll.tail=current;
     }
 }

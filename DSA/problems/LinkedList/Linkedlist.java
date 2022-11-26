@@ -1,7 +1,7 @@
 package LinkedList;
 
 public class Linkedlist<T> {
-    int size;
+    private int size;
     Node head;
     Node tail;
 
@@ -9,6 +9,10 @@ public class Linkedlist<T> {
         size = 0;
         head = null;
         tail = null;
+    }
+
+    public int size(){//get size
+        return size;
     }
 
     public Node get(int index) {// get a node at specified index;
@@ -25,12 +29,12 @@ public class Linkedlist<T> {
 
     public void add(T data) {// adding a node to the end.
         Node element = new Node(data);
-        element.next = null;
         if (size == 0) {
             head = element;
             tail = element;
         } else {
             tail.next = element;
+            element.prev=tail;
             tail = element;
         }
         size++;
@@ -43,11 +47,15 @@ public class Linkedlist<T> {
         else {
             if (index == 0) {
                 element.next = head;
+                head.prev=element;
                 head = element;
             } else {
-                Node prev = get(index);
-                element.next = prev.next;
-                prev.next = element;
+                Node current=get(index);
+                element.prev=current.prev;
+                element.next=current;
+                current.prev=element;
+                element.prev.next=element;
+
             }
             size++;
         }
@@ -59,11 +67,14 @@ public class Linkedlist<T> {
     }
 
     public void remove(int index) {// remove a node.
-        if (index == 0)
+        if (index == 0){
             head = head.next;
+            head.prev=null;
+        }
         else {
             Node element = get(index - 1);
             element.next = element.next.next;
+            element.next.prev=element;
         }
     }
 
@@ -83,9 +94,12 @@ public class Linkedlist<T> {
     public class Node {// Node class
         T data;// current node data
         Node next;// reference to next node
+        Node prev;//reference to previous node
 
         public Node(T data) {// def constructor
             this.data = data;
+            next=null;
+            prev=null;
         }
 
         @Override // used to print the data of a node
