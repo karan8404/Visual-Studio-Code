@@ -113,8 +113,10 @@ public class Linkedlist<T> {
                 return true;
             if (obj == null ||this==null || this.getClass() != obj.getClass())
                 return false;
-            @SuppressWarnings("unchecked")//casting obj to node will give a warning no matter what.
-            Node n=((Node)obj);
+            //@SuppressWarnings("unchecked")//casting obj to node will give a warning no matter what.
+            //Node n=((Node)obj);
+            if (!(obj instanceof Linkedlist<?>.Node)) return false;
+                Linkedlist<?>.Node n = (Linkedlist<?>.Node) obj;
             if(!(this.data==n.data))
                 return false;
             return true; 
