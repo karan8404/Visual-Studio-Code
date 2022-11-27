@@ -12,7 +12,7 @@ public class Linkedlist<T> {
         tail = null;
     }
 
-    public int size(){//get size
+    public int size() {// get size
         return size;
     }
 
@@ -35,7 +35,7 @@ public class Linkedlist<T> {
             tail = element;
         } else {
             tail.next = element;
-            element.prev=tail;
+            element.prev = tail;
             tail = element;
         }
         size++;
@@ -48,14 +48,14 @@ public class Linkedlist<T> {
         else {
             if (index == 0) {
                 element.next = head;
-                head.prev=element;
+                head.prev = element;
                 head = element;
             } else {
-                Node current=get(index);
-                element.prev=current.prev;
-                element.next=current;
-                current.prev=element;
-                element.prev.next=element;
+                Node current = get(index);
+                element.prev = current.prev;
+                element.next = current;
+                current.prev = element;
+                element.prev.next = element;
 
             }
             size++;
@@ -68,14 +68,13 @@ public class Linkedlist<T> {
     }
 
     public void remove(int index) {// remove a node.
-        if (index == 0){
+        if (index == 0) {
             head = head.next;
-            head.prev=null;
-        }
-        else {
+            head.prev = null;
+        } else {
             Node element = get(index - 1);
             element.next = element.next.next;
-            element.next.prev=element;
+            element.next.prev = element;
         }
     }
 
@@ -95,17 +94,30 @@ public class Linkedlist<T> {
     public class Node {// Node class
         T data;// current node data
         Node next;// reference to next node
-        Node prev;//reference to previous node
+        Node prev;// reference to previous node
 
         public Node(T data) {// def constructor
             this.data = data;
-            next=null;
-            prev=null;
+            next = null;
+            prev = null;
         }
 
         @Override // used to print the data of a node
         public String toString() {
             return data.toString();
+        }
+
+        @Override // to check equality of two nodes
+        public boolean equals(Object obj) {
+            if (this == obj)// checks if both have same reference
+                return true;
+            if (obj == null ||this==null || this.getClass() != obj.getClass())
+                return false;
+            @SuppressWarnings("unchecked")//casting obj to node will give a warning no matter what.
+            Node n=((Node)obj);
+            if(!(this.data==n.data))
+                return false;
+            return true; 
         }
 
     }
