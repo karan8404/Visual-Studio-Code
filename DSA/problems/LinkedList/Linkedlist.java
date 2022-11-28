@@ -68,6 +68,8 @@ public class Linkedlist<T> {
     }
 
     public void remove(int index) {// remove a node.
+        if(size==0)
+            return;
         if (index == 0) {
             head = head.next;
             head.prev = null;
@@ -76,6 +78,19 @@ public class Linkedlist<T> {
             element.next = element.next.next;
             element.next.prev = element;
         }
+        size--;
+    }
+
+    public Integer getIndex(Node n){
+        Node current=head;
+        int i=0;
+        while(current!=null){
+            if(current.equals(n))
+                return i;
+            current=current.next;
+            i++;
+        }
+        return null;
     }
 
     @Override
