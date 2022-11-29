@@ -1,12 +1,12 @@
 //implementation of a doubly Linked List. Video #36.
-package LinkedList;
+package LinkedListImp;
 
-public class Linkedlist<T> {
-    private int size;
-    Node head;
-    Node tail;
+public class LinkedList<T> {
+    protected int size;
+    protected Node<T> head;
+    protected Node<T> tail;
 
-    public Linkedlist() {// default constructor
+    public LinkedList() {// default constructor
         size = 0;
         head = null;
         tail = null;
@@ -15,11 +15,17 @@ public class Linkedlist<T> {
     public int size() {// get size
         return size;
     }
+    public Node<T> head(){//get head
+        return head;
+    }
+    public Node<T> tail(){//get tail
+        return tail;
+    }
 
-    public Node get(int index) {// get a node at specified index;
+    public Node<T> get(int index) {// get a node at specified index;
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException("Invalid index for list size: " + size);
-        Node current = head;
+        Node<T> current = head;
         for (int i = 0; i < size; i++) {
             if (index == i)
                 return current;
@@ -28,8 +34,12 @@ public class Linkedlist<T> {
         return null;
     }
 
+    public T getData(Node<T> node){
+        return node.data;
+    }
+
     public void add(T data) {// adding a node to the end.
-        Node element = new Node(data);
+        Node<T> element = new Node<T>(data);
         if (size == 0) {
             head = element;
             tail = element;
@@ -42,7 +52,7 @@ public class Linkedlist<T> {
     }
 
     public void add(T data, int index) {// adding a node to required index
-        Node element = new Node(data);
+        Node<T> element = new Node<T>(data);
         if (index == size)
             add(data);
         else {
@@ -51,7 +61,7 @@ public class Linkedlist<T> {
                 head.prev = element;
                 head = element;
             } else {
-                Node current = get(index);
+                Node<T> current = get(index);
                 element.prev = current.prev;
                 element.next = current;
                 current.prev = element;
@@ -63,26 +73,30 @@ public class Linkedlist<T> {
     }
 
     public void set(T data, int index) {// set the data of a node.
-        Node element = get(index);
+        Node<T> element = get(index);
         element.data = data;
     }
 
-    public void remove(int index) {// remove a node.
+    public Node<T> remove(int index) {// remove a node.
         if(size==0)
-            return;
+            throw new IndexOutOfBoundsException();
+        Node<T> n;
         if (index == 0) {
+            n=head;
             head = head.next;
             head.prev = null;
         } else {
-            Node element = get(index - 1);
+            Node<T> element = get(index - 1);
+            n=element;
             element.next = element.next.next;
             element.next.prev = element;
         }
         size--;
+        return n;
     }
 
-    public Integer getIndex(Node n){
-        Node current=head;
+    public Integer getIndex(Node<T> n){
+        Node<T> current=head;
         int i=0;
         while(current!=null){
             if(current.equals(n))
@@ -96,7 +110,7 @@ public class Linkedlist<T> {
     @Override
     public String toString() {// to help print the linked list.
         StringBuilder res = new StringBuilder("[");
-        Node curr = head;
+        Node<T> curr = head;
         while (curr != null) {
             res.append(curr + ",");
             curr = curr.next;
@@ -106,12 +120,12 @@ public class Linkedlist<T> {
         return res.toString();
     }
 
-    public class Node {// Node class
-        T data;// current node data
-        Node next;// reference to next node
-        Node prev;// reference to previous node
+    public static class Node<S> {// Node class
+        S data;// current node data
+        Node<S> next;// reference to next node
+        Node<S> prev;// reference to previous node
 
-        public Node(T data) {// def constructor
+        public Node(S data) {// def constructor
             this.data = data;
             next = null;
             prev = null;
@@ -130,8 +144,8 @@ public class Linkedlist<T> {
                 return false;
             //@SuppressWarnings("unchecked")//casting obj to node will give a warning no matter what.
             //Node n=((Node)obj);
-            if (!(obj instanceof Linkedlist<?>.Node)) return false;
-                Linkedlist<?>.Node n = (Linkedlist<?>.Node) obj;
+            if (!(obj instanceof Node<?>)) return false;
+                Node<?> n = (Node<?>) obj;
             if(!(this.data==n.data))
                 return false;
             return true; 
