@@ -13,11 +13,11 @@ public class Stack<T> {
         stack.add(data,0);
     }
 
-    public T pop(){//removes head node and returns the data stored in it.
+    public T pop(){//removes top and returns the data stored in it.
         return stack.getData(stack.remove(0));
     }
 
-    public T peek(){
+    public T peek(){// returns the top of the stack.
         return stack.getData(stack.head());
     }
 
@@ -30,4 +30,5 @@ public class Stack<T> {
             return true;
         return false;
     }
+    
 }
