@@ -77,19 +77,28 @@ public class LinkedList<T> {
         element.data = data;
     }
 
-    public Node<T> remove(int index) {// remove a node.
-        if(size==0)
+    public Node<T> remove(int index) {// remove a node and returns it.
+        if(size==0){
             throw new IndexOutOfBoundsException();
-        Node<T> n;
-        if (index == 0) {
-            n=head;
-            head = head.next;
-            head.prev = null;
-        } else {
-            Node<T> element = get(index - 1);
-            n=element;
-            element.next = element.next.next;
-            element.next.prev = element;
+        }
+        
+        Node<T> element = get(index);
+        Node<T> n=element;
+        if(element==head && element==tail){//size==1
+            head=null;
+            tail=null;
+        }
+        else if(element==head){
+            head=element.next;
+            head.prev=null;
+        }
+        else if(element==tail){
+            tail.prev=null;
+            tail.next=null;
+        }
+        else{
+            element.prev.next=element.next;
+            element.next.prev=element.prev;
         }
         size--;
         return n;

@@ -1,3 +1,4 @@
+//implementing a stack using a linked list. Video #41
 package StackImp;
 
 import LinkedListImp.LinkedList;
