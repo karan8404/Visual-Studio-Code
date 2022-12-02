@@ -1,20 +1,47 @@
 //find the previous/next NEAREST smaller/greater element in an array using a stack. Video #42
 package StackImp;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class PreviousSmaller {
-    public static void main(String[] args) {
-        Integer[] arr = { 4, 10, 5, 8, 20, 15, 3, 12 };
-        Stack<Integer> st = new Stack<>();
-        // Logic below
+
+    public static ArrayList<Integer> previousSmaller(Integer[] arr){
+        ArrayList<Integer> res=new ArrayList<>(arr.length);
+        Stack<Integer> st=new Stack<>();
         for (Integer num : arr) {
             while (!st.isEmpty() && num <= st.peek()){
                 st.pop();
             }
             if (st.isEmpty())
-                System.out.println(-1);
+                res.add(-1);
             else
-                System.out.println(st.peek());
+                res.add(st.peek());
             st.push(num);
         }
+        return res;
+    }
+
+    public static ArrayList<Integer> nextSmaller(Integer[] arr){
+        ArrayList<Integer> res=new ArrayList<>(arr.length);
+        Stack<Integer> st=new Stack<>();
+        for (int i=arr.length-1;i>=0;i--) {
+            while (!st.isEmpty() && arr[i] <= st.peek()){
+                st.pop();
+            }
+            if (st.isEmpty())
+                res.add(-1);
+            else
+                res.add(st.peek());
+            st.push(arr[i]);
+        }
+        Collections.reverse(res);
+        return res;
+    }
+
+    public static void main(String[] args) {
+        Integer[] arr = { 4, 10, 5, 8, 20, 15, 3, 12 };
+        // Logic below
+        System.out.println(nextSmaller(arr));
     }
 }
