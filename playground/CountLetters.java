@@ -21,8 +21,8 @@ class CountLetters {
         sc.close();
     }
 
-    public static Map<Character, Integer> countLetters(String s) {// method to count the number of times each letter
-                                                                  // appears.
+    // method to count the number of times each letter appears.
+    public static Map<Character, Integer> countLetters(String s) {
         Map<Character, Integer> letterCount = new HashMap<>();
         char[] charArray = s.toCharArray();// character array storing characters of string s.
         Integer count;// contains the number of times the current character has appeared in string s.
