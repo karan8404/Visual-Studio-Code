@@ -26,7 +26,7 @@ class PreviousSmaller {
     public static ArrayList<Integer> nextSmaller(Integer[] arr) {
         ArrayList<Integer> res= new ArrayList<>();
         Stack<Integer> st= new Stack<>();
-        for (int i=arr.length-1;i>=0;i++) {
+        for (int i=arr.length-1;i>=0;i--) {
             while (!st.isEmpty() && arr[i] <= arr[st.peek()]) {
                 st.pop();
             }
