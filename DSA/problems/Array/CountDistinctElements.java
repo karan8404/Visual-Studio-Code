@@ -1,7 +1,7 @@
 package Array;
 import java.util.HashMap;
 
-//count distinct elements in a window of size k of an arra.
+//count distinct elements in a window of size k of an array.
 //video 29.
 public class CountDistinctElements {
     public static void countDistinctElements(int nums[], int k) {

@@ -1,4 +1,4 @@
-package Array;
+package recursion;
 public class StringSubsets {
 
     static void findSubsets(String s, int i, String current) {
