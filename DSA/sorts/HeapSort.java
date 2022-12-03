@@ -3,6 +3,8 @@ package sorts;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import utilis.Input;
+
 // Java program for implementation of Heap Sort
 
 public class HeapSort {
