@@ -5,35 +5,37 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class PreviousSmaller {
-
+    
+    //returns index of previous smaller element.
     public static ArrayList<Integer> previousSmaller(Integer[] arr){
         ArrayList<Integer> res=new ArrayList<>(arr.length);
         Stack<Integer> st=new Stack<>();
-        for (Integer num : arr) {
-            while (!st.isEmpty() && num <= st.peek()){
+        for (int i=0;i<arr.length;i++) {
+            while (!st.isEmpty() && arr[i] <= arr[st.peek()]){
                 st.pop();
             }
             if (st.isEmpty())
                 res.add(-1);
             else
                 res.add(st.peek());
-            st.push(num);
+            st.push(i);
         }
         return res;
     }
 
+    //returns index of next smaller element.
     public static ArrayList<Integer> nextSmaller(Integer[] arr){
         ArrayList<Integer> res=new ArrayList<>(arr.length);
         Stack<Integer> st=new Stack<>();
         for (int i=arr.length-1;i>=0;i--) {
-            while (!st.isEmpty() && arr[i] <= st.peek()){
+            while (!st.isEmpty() && arr[i] <= arr[st.peek()]){
                 st.pop();
             }
             if (st.isEmpty())
-                res.add(-1);
+                res.add(arr.length);
             else
                 res.add(st.peek());
-            st.push(arr[i]);
+            st.push(i);
         }
         Collections.reverse(res);
         return res;
