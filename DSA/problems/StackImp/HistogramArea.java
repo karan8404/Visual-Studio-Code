@@ -1,4 +1,5 @@
 //gives the maximum area of an histogram.Video #44.
+//uses PreviousSmaller
 package StackImp;
 
 import java.util.ArrayList;

@@ -33,6 +33,7 @@ h1{
 
 .contentCards:hover{
   background-color: rgb(91, 91, 146);
+  rotate: 10;
 }
 
 .divText{
