@@ -6,22 +6,36 @@ import java.util.Arrays;
 
 public class maximumRectangle {
     
-    //collapses a 2d array into a 1d array by combining all rows into 1.
-    public static Integer[] collapse(Integer[][] arr){
-        Integer[] res=new Integer[arr[0].length];
-        Arrays.fill(res, 0);
+    //finds the maximum rectangular area .
+    public static int maxRectangle(Integer[][] Array){
+        int area=Integer.MIN_VALUE;
+        //current array made by combination of previous rows.
+        Integer[] currentArr=new Integer[Array[0].length];
+        Arrays.fill(currentArr, 0);
 
-        for(int i=0;i<arr[0].length;i++){
-            for(int j=0;j<arr.length;j++){
-                res[i]=res[i]+arr[j][i];
+        for(Integer[] arr:Array){
+            currentArr=combine(currentArr,arr);
+            int currArea=HistogramArea.maxArea(currentArr);
+            if(area<currArea)area=currArea;
+        }
+        return area;
+    }
+
+    //combines next row of the 2d matrix into the 1d array
+    public static Integer[] combine(Integer[] arr1,Integer[] arr2){
+        for(int i=0;i<arr1.length;i++){
+            if(arr2[i]==0){
+                arr1[i]=0;
+            }
+            else{
+                arr1[i]=arr1[i]+arr2[i];
             }
         }
-        return res;
+        return arr1;
     }
 
     public static void main(String[] args) {
-        Integer[][] arr={{1,2,3},{4,5,6}};
-        System.out.println(Arrays.toString(collapse(arr)));
-
+        Integer[][] arr={{0,1,1,1,1,0},{1,1,1,1,0,1},{1,1,0,1,1,1},{1,1,1,1,1,0}};
+        System.out.println(maxRectangle(arr));
     }
 }
