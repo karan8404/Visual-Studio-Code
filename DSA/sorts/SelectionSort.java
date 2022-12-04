@@ -2,7 +2,7 @@ package sorts;
 
 import java.util.*;
 
-import utilis.Input;
+import utils.Input;
 
 class SelectionSort {
     public static void main(String args[]) {
