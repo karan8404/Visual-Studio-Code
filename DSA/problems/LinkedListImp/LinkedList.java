@@ -34,10 +34,6 @@ public class LinkedList<T> {
         return null;
     }
 
-    public T getData(Node<T> node){
-        return node.data;
-    }
-
     public void add(T data) {// adding a node to the end.
         Node<T> element = new Node<T>(data);
         if (size == 0) {
@@ -138,6 +134,11 @@ public class LinkedList<T> {
             this.data = data;
             next = null;
             prev = null;
+        }
+
+        //returns the data of the given node.
+        public S data(){
+            return this.data;
         }
 
         @Override // used to print the data of a node

@@ -15,11 +15,11 @@ public class Stack<T> {
     }
 
     public T pop(){//removes top and returns the data stored in it.
-        return stack.getData(stack.remove(0));
+        return stack.remove(0).data();
     }
 
     public T peek(){// returns the top of the stack.
-        return stack.getData(stack.head());
+        return stack.head().data();
     }
 
     public int size(){
