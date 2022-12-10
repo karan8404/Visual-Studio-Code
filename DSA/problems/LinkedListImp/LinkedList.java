@@ -75,7 +75,7 @@ public class LinkedList<T> {
 
     public Node<T> remove(int index) {// remove a node and returns it.
         if(size==0){
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("Index 0 out of bounds for size 0");
         }
         
         Node<T> element = get(index);
