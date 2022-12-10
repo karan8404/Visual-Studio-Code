@@ -29,21 +29,30 @@ public class ConvertExpression {
     public static String InToPost2(String s) {
         StringBuilder res = new StringBuilder(s.length());
         Stack<Character> st = new Stack<>();
-        for (Character c : s.toCharArray()) {
-            if (c == '(') {
+        for (Character c : s.toCharArray()) 
+        {
+            if (c == '(') 
+            {
                 st.push(c);
-            } else if (isOperator(c)) {
+            } 
+            else if (isOperator(c)) 
+            {
                 // while st is not empty and current operator does not have higher precedence.
                 while (!st.isEmpty() && (compareOperators(c, st.peek()) <= 0)) {
                     res.append(st.pop());
                 }
                 st.push(c);
-            } else if (c == ')') {
-                while (compareOperators(c, st.peek()) != 0) {
+            } 
+            else if (c == ')') 
+            {
+                while (compareOperators(c, st.peek()) != 0) 
+                {
                     res.append(st.pop());
                 }
                 st.pop();
-            } else {
+            } 
+            else 
+            {
                 res.append(c);
             }
         }
