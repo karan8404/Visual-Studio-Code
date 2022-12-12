@@ -22,19 +22,20 @@ public class LinkedList<T> {
     /**
      * @return Head of the linked list(first element)
      */
-    public Node<T> head(){//get head
+    public Node<T> head() {// get head
         return head;
     }
 
     /**
      * @return Tail of the linked list(last element)
      */
-    public Node<T> tail(){//get tail
+    public Node<T> tail() {// get tail
         return tail;
     }
 
     /**
      * Returns the Node at the specified index
+     * 
      * @param index Index of the specified Node in LinkedList
      * @return Node at the specified index
      * @throws IndexOutOfBoundsException if specified index is invalid
@@ -53,7 +54,8 @@ public class LinkedList<T> {
 
     /**
      * Adds data to the end of the LinkedList
-     * @param data Data to be added 
+     * 
+     * @param data Data to be added
      */
     public void add(T data) {
         Node<T> element = new Node<T>(data);
@@ -70,7 +72,8 @@ public class LinkedList<T> {
 
     /**
      * Adds data to any index in the linked list
-     * @param data Data to be added
+     * 
+     * @param data  Data to be added
      * @param index Index at which data is to be added
      */
     public void add(T data, int index) {
@@ -96,7 +99,8 @@ public class LinkedList<T> {
 
     /**
      * Replaces data of the node at a specified index with provided data
-     * @param data New(updated) data
+     * 
+     * @param data  New(updated) data
      * @param index Index at which data is to be replaced
      */
     public void set(T data, int index) {
@@ -106,32 +110,30 @@ public class LinkedList<T> {
 
     /**
      * Removes a Node at the specified index
+     * 
      * @param index Index at which node is to be removed
      * @return The removed node
      * @throws IndexOutOfBoundsException If the LinkedList is empty
      */
     public Node<T> remove(int index) {
-        if(size==0){
+        if (size == 0) {
             throw new IndexOutOfBoundsException("Index 0 out of bounds for size 0");
         }
-        
+
         Node<T> element = get(index);
-        Node<T> n=element;
-        if(element==head && element==tail){//size==1
-            head=null;
-            tail=null;
-        }
-        else if(element==head){
-            head=element.next;
-            head.prev=null;
-        }
-        else if(element==tail){
-            tail.prev=null;
-            tail.next=null;
-        }
-        else{
-            element.prev.next=element.next;
-            element.next.prev=element.prev;
+        Node<T> n = element;
+        if (element == head && element == tail) {// size==1
+            head = null;
+            tail = null;
+        } else if (element == head) {
+            head = element.next;
+            head.prev = null;
+        } else if (element == tail) {
+            tail.prev = null;
+            tail.next = null;
+        } else {
+            element.prev.next = element.next;
+            element.next.prev = element.prev;
         }
         size--;
         return n;
@@ -139,23 +141,24 @@ public class LinkedList<T> {
 
     /**
      * Gets the index of a given node in a LinkedList
+     * 
      * @param n The node whose index is needed
      * @return Index of the given node
      */
-    public Integer getIndex(Node<T> n){
-        Node<T> current=head;
-        int i=0;
-        while(current!=null){
-            if(current.equals(n))
+    public Integer getIndex(Node<T> n) {
+        Node<T> current = head;
+        int i = 0;
+        while (current != null) {
+            if (current.equals(n))
                 return i;
-            current=current.next;
+            current = current.next;
             i++;
         }
         return null;
     }
 
     @Override
-    public String toString() {// to help print the linked list.
+    public String toString() {
         StringBuilder res = new StringBuilder("[");
         Node<T> curr = head;
         while (curr != null) {
@@ -180,9 +183,10 @@ public class LinkedList<T> {
 
         /**
          * Returns data of the invoking node
+         * 
          * @return Data of the invoking node
          */
-        public S data(){
+        public S data() {
             return this.data;
         }
 
@@ -195,15 +199,17 @@ public class LinkedList<T> {
         public boolean equals(Object obj) {
             if (this == obj)// checks if both have same reference
                 return true;
-            if (obj == null ||this==null || this.getClass() != obj.getClass())
+            if (obj == null || this == null || this.getClass() != obj.getClass())
                 return false;
-            //@SuppressWarnings("unchecked")//casting obj to node will give a warning no matter what.
-            //Node n=((Node)obj);
-            if (!(obj instanceof Node<?>)) return false;
-                Node<?> n = (Node<?>) obj;
-            if(!(this.data==n.data))
+            // @SuppressWarnings("unchecked")//casting obj to node will give a warning no
+            // matter what.
+            // Node n=((Node)obj);
+            if (!(obj instanceof Node<?>))
                 return false;
-            return true; 
+            Node<?> n = (Node<?>) obj;
+            if (!(this.data == n.data))
+                return false;
+            return true;
         }
 
     }

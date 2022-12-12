@@ -34,11 +34,17 @@ public class Stack<T> {
         return stack.tail().data();
     }
 
+    /**
+     * @return Number of elements in the stack
+     */
     public int size() {
         return stack.size();
     }
 
+    /**
+     * @return True if stack is empty, otherwise returns false
+     */
     public boolean isEmpty() {
-        return (stack.size() == 0);
+        return (size() == 0);
     }
 }
