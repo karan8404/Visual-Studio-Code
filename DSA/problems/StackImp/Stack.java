@@ -4,31 +4,29 @@ package StackImp;
 import LinkedListImp.LinkedList;
 
 public class Stack<T> {
-    LinkedList<T> stack;//the linked list which acts as stack.
+    LinkedList<T> stack;// the linked list which acts as stack.
 
-    public Stack(){
-        stack=new LinkedList<>();
+    public Stack() {
+        stack = new LinkedList<>();
     }
 
-    public void push(T data){//add data at the head of the linked list.
-        stack.add(data,0);
+    public void push(T data) {// add data at the tail of the linked list.
+        stack.add(data);
     }
 
-    public T pop(){//removes top and returns the data stored in it.
-        return stack.remove(0).data();
+    public T pop() {// removes tail and returns the data stored in it.
+        return stack.remove(stack.size() - 1).data();
     }
 
-    public T peek(){// returns the top of the stack.
-        return stack.head().data();
+    public T peek() {// returns the tail of the stack.
+        return stack.tail().data();
     }
 
-    public int size(){
+    public int size() {
         return stack.size();
     }
 
-    public boolean isEmpty(){
-        if(stack.size()==0)
-            return true;
-        return false;
-    }    
+    public boolean isEmpty() {
+        return (stack.size() == 0);
+    }
 }

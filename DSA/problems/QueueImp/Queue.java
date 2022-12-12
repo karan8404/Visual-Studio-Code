@@ -1,3 +1,4 @@
+//implements Queue data structure using linked list.
 package QueueImp;
 
 import LinkedListImp.LinkedList;
@@ -13,21 +14,18 @@ public class Queue<T> {
     }
 
     // addition to the rear end of the queue
-    public void enqueue(T data) {
+    public void push(T data) {
         queue.add(data);
     }
 
     // removal from front of the queue
-    public T dequeue() {
+    public T pop() {
         return queue.remove(0).data();
     }
 
-    public T front() {
+    //returns head.
+    public T peek() {
         return queue.head().data() ;
-    }
-
-    public T rear() {
-        return queue.tail().data();
     }
 
     public int size() {
