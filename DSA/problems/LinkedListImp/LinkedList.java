@@ -12,17 +12,34 @@ public class LinkedList<T> {
         tail = null;
     }
 
+    /**
+     * @return Size of the linked list
+     */
     public int size() {// get size
         return size;
     }
+
+    /**
+     * @return Head of the linked list(first element)
+     */
     public Node<T> head(){//get head
         return head;
     }
+
+    /**
+     * @return Tail of the linked list(last element)
+     */
     public Node<T> tail(){//get tail
         return tail;
     }
 
-    public Node<T> get(int index) {// get a node at specified index;
+    /**
+     * Returns the Node at the specified index
+     * @param index Index of the specified Node in LinkedList
+     * @return Node at the specified index
+     * @throws IndexOutOfBoundsException if specified index is invalid
+     */
+    public Node<T> get(int index) {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException("Invalid index for list size: " + size);
         Node<T> current = head;
@@ -34,7 +51,11 @@ public class LinkedList<T> {
         return null;
     }
 
-    public void add(T data) {// adding a node to the end.
+    /**
+     * Adds data to the end of the LinkedList
+     * @param data Data to be added 
+     */
+    public void add(T data) {
         Node<T> element = new Node<T>(data);
         if (size == 0) {
             head = element;
@@ -47,7 +68,12 @@ public class LinkedList<T> {
         size++;
     }
 
-    public void add(T data, int index) {// adding a node to required index
+    /**
+     * Adds data to any index in the linked list
+     * @param data Data to be added
+     * @param index Index at which data is to be added
+     */
+    public void add(T data, int index) {
         Node<T> element = new Node<T>(data);
         if (index == size)
             add(data);
@@ -68,12 +94,23 @@ public class LinkedList<T> {
         }
     }
 
-    public void set(T data, int index) {// set the data of a node.
+    /**
+     * Replaces data of the node at a specified index with provided data
+     * @param data New(updated) data
+     * @param index Index at which data is to be replaced
+     */
+    public void set(T data, int index) {
         Node<T> element = get(index);
         element.data = data;
     }
 
-    public Node<T> remove(int index) {// remove a node and returns it.
+    /**
+     * Removes a Node at the specified index
+     * @param index Index at which node is to be removed
+     * @return The removed node
+     * @throws IndexOutOfBoundsException If the LinkedList is empty
+     */
+    public Node<T> remove(int index) {
         if(size==0){
             throw new IndexOutOfBoundsException("Index 0 out of bounds for size 0");
         }
@@ -100,6 +137,11 @@ public class LinkedList<T> {
         return n;
     }
 
+    /**
+     * Gets the index of a given node in a LinkedList
+     * @param n The node whose index is needed
+     * @return Index of the given node
+     */
     public Integer getIndex(Node<T> n){
         Node<T> current=head;
         int i=0;
@@ -136,7 +178,10 @@ public class LinkedList<T> {
             prev = null;
         }
 
-        //returns the data of the given node.
+        /**
+         * Returns data of the invoking node
+         * @return Data of the invoking node
+         */
         public S data(){
             return this.data;
         }

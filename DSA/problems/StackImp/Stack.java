@@ -10,15 +10,27 @@ public class Stack<T> {
         stack = new LinkedList<>();
     }
 
-    public void push(T data) {// add data at the tail of the linked list.
+    /**
+     * Adds element to top of stack with given data
+     * @param data Data to be added
+     */
+    public void push(T data) {
         stack.add(data);
     }
 
-    public T pop() {// removes tail and returns the data stored in it.
+    /**
+     * Removes element from the top of the stack
+     * @return The data removed
+     */
+    public T pop() {
         return stack.remove(stack.size() - 1).data();
     }
 
-    public T peek() {// returns the tail of the stack.
+    /**
+     * Returns data of the element at the top of stack without removing it
+     * @return Data of Element at top of stack
+     */
+    public T peek() {
         return stack.tail().data();
     }
 

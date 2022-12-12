@@ -13,17 +13,26 @@ public class Queue<T> {
         queue = new LinkedList<>();
     }
 
-    // addition to the rear end of the queue
+    /**
+     * Adds element to the rear end of the queue.
+     * @param data data to be pushed into the queue
+     */
     public void push(T data) {
         queue.add(data);
     }
 
-    // removal from front of the queue
+    /**
+     * Removes element from rear end of the queue
+     * @return Data of the element removed
+     */
     public T pop() {
         return queue.remove(0).data();
     }
 
-    //returns head.
+    /**
+     * Returns data of the element at rear end of queue without removing it
+     * @return Data of the element at rear of queue
+     */
     public T peek() {
         return queue.head().data() ;
     }
