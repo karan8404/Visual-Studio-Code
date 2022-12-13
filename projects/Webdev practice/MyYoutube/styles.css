@@ -9,7 +9,7 @@ h1{
 
 .contentCards{
   display: flex;
-  background-color: rgba(53, 53, 53, 0.884);
+  background-color: rgba(53, 53, 53, 0.9);
   border-radius: 10%;
   width: 70%;
   margin: auto;
