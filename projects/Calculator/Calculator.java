@@ -92,7 +92,7 @@ public class Calculator implements ActionListener {
     }
 
     public static void main(String[] args) {
-        Calculator calc = new Calculator();
+        Calculator calc=new Calculator();
     }
 
     @Override
@@ -134,12 +134,10 @@ public class Calculator implements ActionListener {
         else if (e.getSource() == equals) {
             operand2 = Double.parseDouble(textField.getText());
             result = math.operate(operand1, operand2, operator);
-            // converting result to int if it has no fractional part
-            if(result%1==0)
-                textField.setText((int)result+"");
-            else
-                textField.setText(result+"");
+            textField.setText(result+"");
             operand1=result;
         }
+
+
     }
 }
