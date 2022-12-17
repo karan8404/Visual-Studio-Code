@@ -131,13 +131,19 @@ public class Calculator implements ActionListener {
             textField.setText("");
         }
 
+        else if(e.getSource()==clear){
+            textField.setText("");
+        }
+
+        else if(e.getSource()==delete){
+            textField.setText(textField.getText().substring(0,textField.getText().length()-1)); 
+        }
+
         else if (e.getSource() == equals) {
             operand2 = Double.parseDouble(textField.getText());
             result = math.operate(operand1, operand2, operator);
             textField.setText(result+"");
             operand1=result;
         }
-
-
     }
 }
