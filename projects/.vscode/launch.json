@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Calculator",
+            "request": "launch",
+            "mainClass": "Calculator.Calculator",
+            "projectName": "projects_23a21f1d"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "codecademyProject.Main",
+            "projectName": "projects_23a21f1d"
+        },
+        {
+            "type": "java",
+            "name": "Launch mandelbrot",
+            "request": "launch",
+            "mainClass": "home.mandelbrot",
+            "projectName": "projects_23a21f1d"
+        },
+        {
+            "type": "java",
+            "name": "Launch random",
+            "request": "launch",
+            "mainClass": "home.random",
+            "projectName": "projects_23a21f1d"
+        }
+    ]
+}
