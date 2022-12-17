@@ -9,15 +9,15 @@ import java.awt.event.*;
 
 public class Calculator implements ActionListener {
 
-    JFrame frame;
-    JTextField textField;
+    JFrame frame;// Frame of buttons
+    JTextField textField;// Number field.
     JButton[] numButtons = new JButton[10];
-    JButton[] funButtons = new JButton[8];
+    JButton[] funButtons = new JButton[8];// function buttons
     JButton add, subtract, multiply, divide, delete, decimal, equals, clear;
     JPanel panel;
     Font myFont = new Font("Javanese text", Font.BOLD, 20);
 
-    double num1 = 0, num2 = 0;
+    double operand1 = 0, operand2 = 0;
     double result = 0;
     char operator;
 
@@ -105,36 +105,38 @@ public class Calculator implements ActionListener {
 
         if (e.getSource() == decimal) {
             textField.setText(textField.getText() + ".");
-        } else if (e.getSource() == add) {
-            num1 = Double.parseDouble(textField.getText());
+        }
+
+        else if (e.getSource() == add) {
+            operand1 = Double.parseDouble(textField.getText());
             operator = '+';
             textField.setText("");
         }
 
         else if (e.getSource() == subtract) {
-            num1 = Double.parseDouble(textField.getText());
+            operand1 = Double.parseDouble(textField.getText());
             operator = '-';
             textField.setText("");
         }
 
         else if (e.getSource() == multiply) {
-            num1 = Double.parseDouble(textField.getText());
+            operand1 = Double.parseDouble(textField.getText());
             operator = '*';
             textField.setText("");
         }
 
         else if (e.getSource() == divide) {
-            num1 = Double.parseDouble(textField.getText());
+            operand1 = Double.parseDouble(textField.getText());
             operator = '/';
             textField.setText("");
         }
 
         else if (e.getSource() == equals) {
-            num2 = Double.parseDouble(textField.getText());
-            result = math.operate(num1, num2, operator);
-            textField.setText(result + "");
-            num1 = result;
+            operand2 = Double.parseDouble(textField.getText());
+            result = math.operate(operand1, operand2, operator);
+            //convertint result to int of 
+            textField.setText(String.valueOf((result-(int)result==0?(int)result:result)));
+            operand1 = result;
         }
     }
-
 }
