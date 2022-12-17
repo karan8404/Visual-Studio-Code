@@ -134,9 +134,12 @@ public class Calculator implements ActionListener {
         else if (e.getSource() == equals) {
             operand2 = Double.parseDouble(textField.getText());
             result = math.operate(operand1, operand2, operator);
-            //convertint result to int of 
-            textField.setText(String.valueOf((result-(int)result==0?(int)result:result)));
-            operand1 = result;
+            // converting result to int if it has no fractional part
+            if(result%1==0)
+                textField.setText((int)result+"");
+            else
+                textField.setText(result+"");
+            operand1=result;
         }
     }
 }
