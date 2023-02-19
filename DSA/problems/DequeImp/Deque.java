@@ -59,6 +59,10 @@ public class Deque<T> {
         return deque.remove(size()-1).data();
     }
 
+    /**
+     * Returns size of the Deque
+     * @return Size of the Deque
+     */
     public int size(){
         return deque.size();
     }
