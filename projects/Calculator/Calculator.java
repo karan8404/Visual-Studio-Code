@@ -2,8 +2,6 @@ package Calculator;
 
 //implementing a simple calculator.
 import javax.swing.*;
-import javax.swing.text.AttributeSet.FontAttribute;
-
 import java.awt.*;
 import java.awt.event.*;
 
