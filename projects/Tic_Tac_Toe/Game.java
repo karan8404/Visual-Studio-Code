@@ -5,37 +5,6 @@ import java.util.Scanner;
 
 public class Game {
 
-    public static void displayBoard(char[][] board) {
-        System.out.printf("%c|%c|%c\n-|-|-\n", board[0][0], board[0][1], board[0][2]);
-        System.out.printf("%c|%c|%c\n-|-|-\n", board[1][0], board[1][1], board[1][2]);
-        System.out.printf("%c|%c|%c\n", board[2][0], board[2][1], board[2][2]);
-    }
-
-    public static boolean checkWin(char[][] board) {
-        for (int i = 0; i < 3; i++) {
-            if (board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][1] == board[i][2])// checking rows
-                return true;
-            if (board[0][i] != ' ' && board[0][i] == board[1][i] && board[1][i] == board[2][i])// checking columns
-                return true;
-        }
-        if (board[0][0] != ' ' && board[0][0] == board[1][1] && board[1][1] == board[2][2])// left diagonal
-            return true;
-        if (board[2][0] != ' ' && board[2][0] == board[1][1] && board[1][1] == board[0][2])// right diagonal
-            return true;
-
-        return false;
-    }
-
-    public static boolean checkTie(char[][] board) {
-        for (char[] column : board) {
-            for (char element : column) {
-                if (element == ' ')
-                    return false;
-            }
-        }
-        return true;
-    }
-
     public static boolean makeMove(int loc, char[][] board, boolean player) {
         loc--;
         if (board[loc / 3][loc % 3] != ' ') {
