@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Game 
 {
+    static int called=0;//how many times minimax is called.
 
     public static void main(String[] args) 
     {
@@ -27,6 +28,7 @@ public class Game
             if (board.checkWin()) 
             {
                 System.out.println(board.getWinner() + " Won");
+                System.out.printf("Minimax called--> %d times",called);
                 sc.close();
                 System.exit(0);
             }
@@ -51,6 +53,7 @@ public class Game
             System.out.println("Best Move-->"+eval[1]);
         }
         System.out.println("Game Tied!");
+        System.out.printf("Minimax called--> %d times",called);
         sc.close();
     }
 
@@ -92,7 +95,8 @@ public class Game
     }
 
     public static int minimax(BitBoard board) 
-    {//TODO fix minimax
+    {//TODO add better evals for positions which win faster
+        called++;
         if (board.checkTie())
             return 0;
         if (board.checkWin())
