@@ -3,88 +3,95 @@ package Tic_Tac_Toe;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game {
+public class Game 
+{
 
-    public static boolean makeMove(int loc, char[][] board, boolean player) {
-        loc--;
-        if (board[loc / 3][loc % 3] != ' ') {
-            System.out.println("Position already occupied");
-            return false;
-        }
-        board[loc / 3][loc % 3] = player ? 'X' : 'O';
-        player = !player;
-        return true;
-    }
-
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         Scanner sc = new Scanner(System.in);
-        char[][] board = new char[3][3];
-        boolean player = true;
+        BitBoard board = new BitBoard();
+        int input;
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = ' ';
-            }
-        }
-
-        for (int i = 0; i < 9; i++) {
-            int input;
-            System.out.println("Enter the location.");
+        while (!board.checkTie()) 
+        {
+            System.out.println("Enter the location to enter[1-9]");
             input = sc.nextInt();
 
-            if (makeMove(input, board, player))
-                player = !player;
-            else {
-                i--;
+            if (!board.makeMove(input)) 
+            {
+                System.out.println("Invalid move");
                 continue;
             }
 
-            displayBoard(board);
-            if (checkWin(board)) {
-                System.out.println((!player ? "Player" : "Bot") + " Won!");
+            board.displayBoard();
+            if (board.checkWin()) 
+            {
+                System.out.println(board.getWinner() + " Won");
+                sc.close();
                 System.exit(0);
             }
-            int eval=minimax(board, player);
-            switch (eval) {
-                case 1:
-                    System.out.println("Player should win");
-                    break;
-                
-                case 0:
-                    System.out.println("Should be tie");
-                    break;
-                case -1:
-                    System.out.println("Bot should win");
-                    break;
-
-                default:
-                    System.out.println("wrong eval "+eval);
-                    break;
-            }
+            
+            System.out.println("Best Move-->"+bestMove(board));
         }
-
-        System.out.println("It is a Tie!");
+        System.out.println("Game Tied!");
         sc.close();
     }
 
-    public static int minimax(char[][] board,boolean player){
-        if(checkTie(board))
-            return 0;
-        if(checkWin(board))
-            return player?-1:1;//if players move and a win is found the bot must have won last turn.
+    public static int bestMove(BitBoard board){
+        int bestBoardIndex=-1;
 
-        if(player){
-            int maxEval=Integer.MIN_VALUE;
-            for(char[][] child:getMoves(board, player)){
-                int eval=minimax(child, !player);
-                maxEval=Math.max(eval, maxEval);
+        if (board.isPlayerTurn()) 
+        {
+            int maxEval = Integer.MIN_VALUE;
+
+            for (BitBoard child : getMoves(board)) 
+            {
+                int eval = minimax(child);
+                if(eval>=maxEval){
+                    maxEval=eval;
+                    bestBoardIndex=child.lastLoc;
+                }
+            }
+            return bestBoardIndex;
+        } 
+        else 
+        {
+            int minEval = Integer.MAX_VALUE;
+            for (BitBoard child : getMoves(board)) 
+            {
+                int eval=minimax(child);
+                if(eval<=minEval){
+                    minEval=eval;
+                    bestBoardIndex=child.lastLoc;
+                }            }
+            return bestBoardIndex;
+        }
+    }
+
+    public static int minimax(BitBoard board) 
+    {//TODO fix minimax
+        if (board.checkTie())
+            return 0;
+        if (board.checkWin())
+            return board.isPlayerTurn()?-1:1;// if players move and win found bot must've won.
+
+        if (board.isPlayerTurn()) 
+        {
+            int maxEval = Integer.MIN_VALUE;
+
+            for (BitBoard child : getMoves(board)) 
+            {
+                int eval = minimax(child);
+                maxEval = Math.max(eval, maxEval);
             }
             return maxEval;
-        }
-        else{
-            int minEval=Integer.MAX_VALUE;
-            for(char[][] child:getMoves(board, player)){
-                int eval=minimax(child, !player);
+        } 
+        else 
+        {
+            int minEval = Integer.MAX_VALUE;
+            for (BitBoard child : getMoves(board)) 
+            {
+                int eval=minimax(child);
                 minEval=Math.min(eval, minEval);
             }
             return minEval;
@@ -92,26 +99,21 @@ public class Game {
 
     }
 
-    public static ArrayList<char[][]> getMoves(char[][] board,boolean player){
-        char move=player?'X':'O';
-        char[][] currBoard;
-        ArrayList<char[][]> moves=new ArrayList<>(9);
+    public static ArrayList<BitBoard> getMoves(BitBoard board) 
+    {
+        BitBoard currBoard = new BitBoard();
+        ArrayList<BitBoard> moves = new ArrayList<>(9);
         for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++) 
-                if(board[i][j]==' '){
-                    currBoard=new char[3][3];
-                    arrCopy(board,currBoard);
-                    currBoard[i][j]=move;
+            for (int j = 0; j < 3; j++)
+                if (board.pos(i, j).isEmpty()) 
+                {
+                    currBoard = board.clone();
+                    currBoard.makeMove(i * 3 + j + 1);
+                    currBoard.lastLoc=i*3+j+1;
+
                     moves.add(currBoard);
+                    currBoard = new BitBoard();
                 }
         return moves;
-    }
-
-    public static void arrCopy(char[][] src,char[][] dest){
-        for (int i = 0; i < dest.length; i++) {
-            for (int j = 0; j < dest[i].length; j++) {
-                dest[i][j]=src[i][j];
-            }
-        }
     }
 }
