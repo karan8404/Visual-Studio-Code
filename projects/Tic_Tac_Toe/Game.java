@@ -30,16 +30,34 @@ public class Game
                 sc.close();
                 System.exit(0);
             }
-            
-            System.out.println("Best Move-->"+bestMove(board));
+            int[] eval=getEval(board);
+            switch (eval[0]) {
+                case 1:
+                    System.out.println("Player Should Win");
+                    break;
+
+                case 0:
+                    System.out.println("Should Tie");
+                    break;
+                    
+                case -1:
+                    System.out.println("Bot Should Win");
+                    break;
+
+                default:
+                    System.out.println("Something Broke!");
+                    break;
+            }
+            System.out.println("Best Move-->"+eval[1]);
         }
         System.out.println("Game Tied!");
         sc.close();
     }
 
-    public static int bestMove(BitBoard board){
+    //eval[0]=evaluation,eval[1]=best move
+    public static int[] getEval(BitBoard board){
         int bestBoardIndex=-1;
-
+        int res[]=new int[2];
         if (board.isPlayerTurn()) 
         {
             int maxEval = Integer.MIN_VALUE;
@@ -52,7 +70,9 @@ public class Game
                     bestBoardIndex=child.lastLoc;
                 }
             }
-            return bestBoardIndex;
+            res[0]=maxEval;
+            res[1]=bestBoardIndex;
+            return res;
         } 
         else 
         {
@@ -63,8 +83,11 @@ public class Game
                 if(eval<=minEval){
                     minEval=eval;
                     bestBoardIndex=child.lastLoc;
-                }            }
-            return bestBoardIndex;
+                }
+            }
+            res[0]=minEval;
+            res[1]=bestBoardIndex;
+            return res;
         }
     }
 
