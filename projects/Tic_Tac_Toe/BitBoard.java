@@ -96,7 +96,7 @@ public class BitBoard
         {
             if (pos(i, 0).equals(pos(i, 1)) && pos(i, 1).equals(pos(i, 2)))// checking rows
                 return true;
-            if (pos(0, i).equals(pos(1, i)) && pos(1, i).equals(pos(2, i)))// checking rows
+            if (pos(0, i).equals(pos(1, i)) && pos(1, i).equals(pos(2, i)))// checking columns
                 return true;
         }
         if (pos(0, 0).equals(pos(1, 1)) && pos(1, 1).equals(pos(2, 2)))// left diagonal

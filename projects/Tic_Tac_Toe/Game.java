@@ -1,4 +1,4 @@
-package Tic_Tac_Toe;
+package Tic_Tac_Toe;    
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -33,23 +33,16 @@ public class Game
                 System.exit(0);
             }
             int[] eval=getEval(board);
-            switch (eval[0]) {
-                case 1:
-                    System.out.println("Player Should Win");
-                    break;
+            
+            if(eval[0]>0)
+                System.out.println("Player Should Win,eval = "+eval[0]);
+            else if(eval[0]==0)
+                System.out.println("Should Tie,eval = "+eval[0]);
+            else if(eval[0]<0)
+                System.out.println("Bot Should Win,eval = "+eval[0]);
+            else
+                System.out.println("Something Broke!,eval = "+eval[0]);
 
-                case 0:
-                    System.out.println("Should Tie");
-                    break;
-                    
-                case -1:
-                    System.out.println("Bot Should Win");
-                    break;
-
-                default:
-                    System.out.println("Something Broke!");
-                    break;
-            }
             System.out.println("Best Move-->"+eval[1]);
         }
         System.out.println("Game Tied!");
@@ -67,8 +60,8 @@ public class Game
 
             for (BitBoard child : getMoves(board)) 
             {
-                int eval = minimax(child);
-                if(eval>=maxEval){
+                int eval = minimax(child,9);
+                if(eval>maxEval){
                     maxEval=eval;
                     bestBoardIndex=child.lastLoc;
                 }
@@ -82,8 +75,8 @@ public class Game
             int minEval = Integer.MAX_VALUE;
             for (BitBoard child : getMoves(board)) 
             {
-                int eval=minimax(child);
-                if(eval<=minEval){
+                int eval=minimax(child,9);
+                if(eval<minEval){
                     minEval=eval;
                     bestBoardIndex=child.lastLoc;
                 }
@@ -94,13 +87,13 @@ public class Game
         }
     }
 
-    public static int minimax(BitBoard board) 
+    public static int minimax(BitBoard board,int depth) 
     {//TODO add better evals for positions which win faster
         called++;
+        if (board.checkWin())
+            return (board.isPlayerTurn()?-1:1)*depth;// if players move and win found bot must've won.
         if (board.checkTie())
             return 0;
-        if (board.checkWin())
-            return board.isPlayerTurn()?-1:1;// if players move and win found bot must've won.
 
         if (board.isPlayerTurn()) 
         {
@@ -108,7 +101,7 @@ public class Game
 
             for (BitBoard child : getMoves(board)) 
             {
-                int eval = minimax(child);
+                int eval = minimax(child,depth-1);
                 maxEval = Math.max(eval, maxEval);
             }
             return maxEval;
@@ -118,7 +111,7 @@ public class Game
             int minEval = Integer.MAX_VALUE;
             for (BitBoard child : getMoves(board)) 
             {
-                int eval=minimax(child);
+                int eval=minimax(child,depth-1);
                 minEval=Math.min(eval, minEval);
             }
             return minEval;
