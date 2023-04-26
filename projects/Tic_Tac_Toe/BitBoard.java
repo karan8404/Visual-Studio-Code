@@ -6,7 +6,9 @@ public class BitBoard
 {
     private Pos[][] board;
     boolean player;
-    int lastLoc;
+    protected int lastLoc;
+    private char playerMark;
+    private char botMark;
 
     public static void main(String[] args)
     {
@@ -43,6 +45,24 @@ public class BitBoard
 
         player = true;
         lastLoc = -1;
+        playerMark='X';
+        botMark='O';
+    }
+    
+    /**
+     * Creates a board with custom marks for players.
+     */
+    public BitBoard(char playerMark,char botMark)
+    {
+        board = new Pos[3][3];
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                board[i][j] = new Pos();
+
+        player = true;
+        lastLoc = -1;
+        this.playerMark=playerMark;
+        this.botMark=botMark;
     }
 
     public Pos pos(int i, int j)
@@ -130,7 +150,7 @@ public class BitBoard
         return cloneBoard;
     }
 
-    public static class Pos
+    public class Pos
     {
         boolean hasMark;
         boolean mark;// true='X',false='O'
@@ -149,7 +169,7 @@ public class BitBoard
         {
             if (isEmpty())
                 return ' ';
-            return (mark ? 'X' : 'O');
+            return (mark ? playerMark : botMark);
         }
 
         void setMark(boolean player)
