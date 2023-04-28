@@ -35,7 +35,8 @@ public class Bot {
             else
             {
                 System.out.println("Bot Played...");
-                input=Game.getEval(board)[1];
+                //input=Game.get(board)[1];//for getting the best move
+                input=Game.getRandomMove(board)[1];
             }
 
             if (!board.makeMove(input)) {
@@ -44,6 +45,7 @@ public class Bot {
             }
             board.displayBoard();
             System.out.println("\n\n");
+            
             
             if (board.checkWin()) {
                 System.out.println(board.getWinner() + " Won");

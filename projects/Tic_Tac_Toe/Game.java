@@ -1,7 +1,9 @@
 package Tic_Tac_Toe;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Game {
     static int called = 0;// how many times minimax is called.
@@ -45,6 +47,45 @@ public class Game {
         sc.close();
     }
 
+    // gets a random from the move pool
+    // which doesnt change the ultimate outcome
+    public static Integer[] getRandomMove(BitBoard board) {
+        Stack<Integer[]> moveList = new Stack<>();
+
+        if (board.isPlayerTurn()) {
+            for (BitBoard child : getMoves(board)) {
+                Integer[] eval =new Integer[2];
+                eval[0]=minimax(child, 9);
+                eval[1]=child.lastLoc;
+                int sign = Integer.signum(eval[0]);
+
+                while (!moveList.isEmpty() && Integer.signum(moveList.peek()[0]) < sign)
+                    moveList.pop();
+
+                if(moveList.isEmpty() || Integer.signum(moveList.peek()[0]) == sign)
+                    moveList.add(eval);
+            }
+        } else {
+            for (BitBoard child : getMoves(board)) {
+
+                Integer[] eval =new Integer[2];
+                eval[0]=minimax(child, 9);
+                eval[1]=child.lastLoc;
+                int sign = Integer.signum(eval[0]);
+
+                while (!moveList.isEmpty() && Integer.signum(moveList.peek()[0]) > sign)
+                    moveList.pop();
+
+                if(moveList.isEmpty() || Integer.signum(moveList.peek()[0]) == sign)
+                    moveList.add(eval);
+            }
+        }
+
+        // generates random number between between 0 and size
+        //thus getting a random element from the stack
+        return moveList.elementAt((new Random()).nextInt(moveList.size()));
+    }
+
     // eval[0]=evaluation,eval[1]=best move
     public static int[] getEval(BitBoard board) {
         int bestBoardIndex = -1;
@@ -77,7 +118,7 @@ public class Game {
         }
     }
 
-    public static int minimax(BitBoard board, int depth) {// TODO create a bot to play moves automatically
+    public static int minimax(BitBoard board, int depth) {
         called++;
         if (board.checkWin())
             return (board.isPlayerTurn() ? -1 : 1) * depth;// if players move and win found bot must've won.
