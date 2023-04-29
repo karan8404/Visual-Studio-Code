@@ -22,6 +22,24 @@ public class Bot {
             }
         }
 
+        //to select difficulty
+        int depth;
+        while (true) {
+            System.out.println("Select difficulty:- [Easy/Medium/Hard(impossible)]-[e/m/d]");
+            char choice = sc.next().charAt(0);
+
+            if (choice == 'E' || choice == 'e') {
+                depth=3;
+                break;
+            } else if (choice == 'M' || choice == 'm') {
+                depth=6;
+                break;
+            }else if(choice == 'D' || choice == 'd'){
+                depth=9;
+                break;
+            }
+        }
+
         int input;
         while (!board.checkTie())
         {
@@ -35,8 +53,8 @@ public class Bot {
             else
             {
                 System.out.println("Bot Played...");
-                //input=Game.get(board)[1];//for getting the best move
-                input=Game.getRandomMove(board)[1];
+                //input=Game.getEval(board,depth)[1];//for getting the best move
+                input=Game.getRandomMove(board,depth)[1];//for getting a dynamic move
             }
 
             if (!board.makeMove(input)) {

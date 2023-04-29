@@ -29,7 +29,7 @@ public class Game {
                 sc.close();
                 System.exit(0);
             }
-            int[] eval = getEval(board);
+            int[] eval = getEval(board,9);
 
             if (eval[0] > 0)
                 System.out.println("Player Should Win,eval = " + eval[0]);
@@ -49,13 +49,13 @@ public class Game {
 
     // gets a random from the move pool
     // which doesnt change the ultimate outcome
-    public static Integer[] getRandomMove(BitBoard board) {
+    public static Integer[] getRandomMove(BitBoard board,int depth) {
         Stack<Integer[]> moveList = new Stack<>();
 
         if (board.isPlayerTurn()) {
             for (BitBoard child : getMoves(board)) {
                 Integer[] eval =new Integer[2];
-                eval[0]=minimax(child, 9);
+                eval[0]=minimax(child, depth);
                 eval[1]=child.lastLoc;
                 int sign = Integer.signum(eval[0]);
 
@@ -69,7 +69,7 @@ public class Game {
             for (BitBoard child : getMoves(board)) {
 
                 Integer[] eval =new Integer[2];
-                eval[0]=minimax(child, 9);
+                eval[0]=minimax(child, depth);
                 eval[1]=child.lastLoc;
                 int sign = Integer.signum(eval[0]);
 
@@ -87,14 +87,14 @@ public class Game {
     }
 
     // eval[0]=evaluation,eval[1]=best move
-    public static int[] getEval(BitBoard board) {
+    public static int[] getEval(BitBoard board,int depth) {
         int bestBoardIndex = -1;
         int res[] = new int[2];
         if (board.isPlayerTurn()) {
             int maxEval = Integer.MIN_VALUE;
 
             for (BitBoard child : getMoves(board)) {
-                int eval = minimax(child, 9);
+                int eval = minimax(child, depth);
                 if (eval > maxEval) {
                     maxEval = eval;
                     bestBoardIndex = child.lastLoc;
@@ -106,7 +106,7 @@ public class Game {
         } else {
             int minEval = Integer.MAX_VALUE;
             for (BitBoard child : getMoves(board)) {
-                int eval = minimax(child, 9);
+                int eval = minimax(child, depth);
                 if (eval < minEval) {
                     minEval = eval;
                     bestBoardIndex = child.lastLoc;
