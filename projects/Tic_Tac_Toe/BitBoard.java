@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class BitBoard
 {
     private Pos[][] board;
-    boolean player;
+    protected boolean player;
     protected int lastLoc;
     private char playerMark;
     private char botMark;

@@ -29,10 +29,10 @@ public class Bot {
             char choice = sc.next().charAt(0);
 
             if (choice == 'E' || choice == 'e') {
-                depth=3;
+                depth=2;
                 break;
             } else if (choice == 'M' || choice == 'm') {
-                depth=6;
+                depth=5;
                 break;
             }else if(choice == 'D' || choice == 'd'){
                 depth=9;
