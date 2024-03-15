@@ -10,4 +10,7 @@ public class StringSubsets {
         findSubsets(s, i + 1, current + s.charAt(i));
     }
 
+    public static void main(String[] args) {
+        findSubsets("aba", 0, "");
+    }
 }
